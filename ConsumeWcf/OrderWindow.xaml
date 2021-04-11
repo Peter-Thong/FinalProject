@@ -1,0 +1,118 @@
+﻿<Window x:Class="ConsumeWcf.OrderWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ConsumeWcf" xmlns:scm="clr-namespace:System.ComponentModel;assembly=WindowsBase"
+        mc:Ignorable="d"
+        Title="OrderWindow" Height="600" Width="800" Closing="Window_Closing">
+    <Grid>
+        <Border Margin="0,0,0,0" BorderBrush="#2B2D42" BorderThickness="1,1,1,1">
+            <Border.Background>
+                <LinearGradientBrush EndPoint="0.504,1.5" StartPoint="0.504,0.03">
+                    <GradientStop Color="#6d6875" Offset="0"/>
+                    <GradientStop Color="#FFFFFF" Offset="0.567"/>
+                </LinearGradientBrush>
+            </Border.Background>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="2*"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <DataGrid Name="dataGrid" Grid.Column="0" CanUserSortColumns="True" Height="200" Margin="12,21,0,0" VerticalAlignment="Top" Width="450" AutoGenerateColumns = "False" SelectedCellsChanged="dataGrid_SelectedCellsChanged">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn x:Name="OrderID" Header="Order ID" Binding="{Binding OrderID}" Width="60" />
+                        <DataGridTextColumn Header="Customer ID" Binding="{Binding CustomerID}" Width="80"/>
+                        <DataGridTextColumn x:Name="OrderDate" Header="Order Date" Binding="{Binding OrderDate}" Width="80"/>
+                        <DataGridTextColumn Header="Filled Date" Binding="{Binding FilledDate}" Width="80" />
+                        <DataGridTextColumn Header="Status" Binding="{Binding Status}" Width="50"/>
+                        <DataGridTextColumn Header="Amount" Binding="{Binding Amount}" Width="*"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+                <TextBox x:Name="tbSearch" Margin="80,7,94,345" Grid.Column="1"/>
+                <Button Margin="174,8,10,346" Grid.Column="1" Content="Search" x:Name="btnSearch" Click="btnSearch_Click"></Button>
+
+                <StackPanel Grid.Column="1" Margin="10,60,10,10">
+                    <Label Content="Customer ID:"/>
+                    <TextBox x:Name="tbCustomerID"></TextBox>
+                    <Label x:Name="test" Content="Order Date:"/>
+                    <DatePicker x:Name="tbOrderDate"></DatePicker>
+                    <Label Content="Filled Date:"/>
+                    <DatePicker x:Name="tbFilledDate"></DatePicker>
+                    <Label Content="Status:"/>
+                    <TextBox x:Name="tbStatus"></TextBox>
+                    <Label Content="Amount:"/>
+                    <TextBox x:Name="tbAmount"></TextBox>
+
+                </StackPanel>
+                <StackPanel Grid.Column="0" Height="140" Grid.Row="1" VerticalAlignment="Center" Width="550" Orientation="Horizontal" Grid.ColumnSpan="2" >
+                    <Button x:Name="btnAdd" Width="150" Click="btnAdd_Click" Margin="15,0,15,0" Background="#034078" BorderThickness="0">
+                        <Button.Content>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="28*"/>
+                                    <RowDefinition Height="64*"/>
+                                    <RowDefinition Height="50*"/>
+                                    <RowDefinition Height="8*"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="15"/>
+                                    <ColumnDefinition Width="28*"/>
+                                    <ColumnDefinition Width="64*"/>
+                                    <ColumnDefinition Width="43*"/>
+                                </Grid.ColumnDefinitions>
+                                <Image HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Source="Images/add.png" />
+                                <TextBlock Text="Add Order" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Bottom" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" />
+                            </Grid>
+                        </Button.Content>
+                    </Button>
+                    <Button x:Name="btnUpdate" Width="160" Click="btnUpdate_Click" Margin="15,0,15,0" Background="#1282A2" BorderThickness="0">
+                        <Button.Content>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="28*"/>
+                                    <RowDefinition Height="64*"/>
+                                    <RowDefinition Height="50*"/>
+                                    <RowDefinition Height="8*"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="15"/>
+                                    <ColumnDefinition Width="28*"/>
+                                    <ColumnDefinition Width="64*"/>
+                                    <ColumnDefinition Width="43*"/>
+                                </Grid.ColumnDefinitions>
+                                <Image HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Source="Images/update.jpg" />
+                                <TextBlock Text="Update Order" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Bottom" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" />
+                            </Grid>
+                        </Button.Content>
+                    </Button>
+                    <Button x:Name="btnDelete" Width="150" Click="btnDelete_Click" Margin="15,0,15,0" Background="#942911" BorderThickness="0">
+                        <Button.Content>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="28*"/>
+                                    <RowDefinition Height="64*"/>
+                                    <RowDefinition Height="50*"/>
+                                    <RowDefinition Height="8*"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="15"/>
+                                    <ColumnDefinition Width="28*"/>
+                                    <ColumnDefinition Width="64*"/>
+                                    <ColumnDefinition Width="43*"/>
+                                </Grid.ColumnDefinitions>
+                                <Image HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Source="Images/delete.png" />
+                                <TextBlock Text="Delete Order" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Bottom" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" />
+                            </Grid>
+                        </Button.Content>
+                    </Button>
+                </StackPanel>
+            </Grid>
+        </Border>
+    </Grid>
+</Window>
